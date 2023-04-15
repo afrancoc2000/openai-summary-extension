@@ -1,0 +1,9 @@
+body {
+  width: 20rem;
+  margin: 20px 10px;
+}
+
+h3,
+p {
+  margin: 10px 0;
+}

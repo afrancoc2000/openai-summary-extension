@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Test Extension Options</title>
+    <link rel="stylesheet" href="./options.css" />
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>
+          <label for="apiKey"> OpenAI Api Key:</label>
+        </td>
+        <td>
+          <input type="text" id="apiKey" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="endpoint"> Azure OpenAI Endpoint:</label>
+        </td>
+        <td>
+          <input type="text" id="endpoint" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="deployment"> Azure OpenAI Deployment:</label>
+        </td>
+        <td>
+            <select id="deployment">
+                <option value="code-davinci-002">code-davinci-002</option>
+                <option value="text-davinci-003">text-davinci-003</option>
+                <option value="gpt-3.5-turbo-0301">gpt-3.5-turbo-0301</option>
+                <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+                <option value="gpt-35-turbo-0301">gpt-35-turbo-0301</option>
+                <option value="gpt-4-0314">gpt-4-0314</option>
+                <option value="gpt-4-32k-0314">gpt-4-32k-0314</option>
+              </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="maxTokens"> Azure OpenAI max tokens:</label>
+        </td>
+        <td>
+          <input type="text" id="maxTokens" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="temperature"> Azure OpenAI temperature:</label>
+        </td>
+        <td>
+          <input type="text" id="temperature" />
+        </td>
+      </tr>
+    </table>
+
+    <div id="status"></div>
+    <button id="save">Save</button>
+
+    <script src="options.js"></script>
+  </body>
+</html>

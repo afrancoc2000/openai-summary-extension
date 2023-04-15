@@ -1,0 +1,15 @@
+body {
+  margin: 20px 15px;
+}
+
+button {
+    margin: 10px 0;
+}
+
+table {
+    width: 100%;
+}
+
+input, select {
+    width: 92%;
+}
