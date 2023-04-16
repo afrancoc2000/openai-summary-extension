@@ -12,6 +12,7 @@ const chatQuery =
 const contextTokens = 50;
 const reservedTokens = 200;
 const tokensPerWord = 1.5;
+const wordsPerMinute = 200;
 const maxTokensMap = {
   "code-davinci-002": 8001,
   "text-davinci-003": 4097,
@@ -59,7 +60,7 @@ button.addEventListener("click", async () => {
 });
 
 function fillBasicInfo() {
-  const readingTime = Math.round(wordCount / 200);
+  const readingTime = Math.round(wordCount / wordsPerMinute);
   wordCountMessage.textContent = `The article 📄 has ${wordCount} words.`;
   readTimeMessage.textContent = `It takes ⏱️ ${readingTime} min to read it.`;
 }
