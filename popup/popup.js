@@ -3,6 +3,7 @@ const actionsDiv = document.querySelector(".mdl-card__actions");
 const wordCountMessage = document.querySelector("#wordCount");
 const readTimeMessage = document.querySelector("#readTime");
 const summaryMessage = document.querySelector("#summary");
+const warningMessage = document.querySelector("#warning");
 const wordMatchRegExp = /[^\s]+/g;
 const chatContext =
   "You are a reader assistant that provides summaries for articles.";
@@ -24,8 +25,10 @@ var words = [];
 var wordCount = 0;
 var text = "";
 var config = {};
+var displayWarning = false;
 
 actionsDiv.style.display = "none";
+warningMessage.style.display = "none";
 
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   chrome.tabs.sendMessage(tabs[0].id, {}, function (response) {
@@ -63,6 +66,7 @@ function fillBasicInfo() {
 function fillOpenAIInfo() {
   summaryMessage.textContent = "Generating summary...";
   queryOpenAI(text, config, (response) => {
+    if (displayWarning) warningMessage.style.display = "block";
     summaryMessage.textContent = response;
   });
 }
@@ -85,19 +89,17 @@ function getConfig(sendResponse) {
 function queryOpenAI(text, config, sendResponse) {
   const maxTokens = getMaxTokens(text, config.deployment);
   var analysisText = text;
-  var initText = "";
   if (maxTokens <= reservedTokens) {
     analysisText = getFirstXWords(
       text,
       wordCount - Math.round((reservedTokens - maxTokens) / 1.5)
     );
-    initText =
-      "*** This article would use more than the max tokens allowed, so only the first part of the article was summarized. *** \n";
+    displayWarning = true;
   }
 
   buildQuery(analysisText, config)
     .then((response) => response.json())
-    .then((jsonData) => sendResponse(processOpenAIResponse(jsonData, initText)))
+    .then((jsonData) => sendResponse(processOpenAIResponse(jsonData)))
     .catch((error) => sendResponse(error));
 }
 
@@ -105,16 +107,6 @@ function getFirstXWords(text, count) {
   var newText = text.split(/\s+/).slice(0, count).join(" ");
   console.log("new text: " + newText);
   return newText;
-}
-
-function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return Promise.resolve(response);
-  } else {
-    return Promise.reject(
-      new Error("We're sorry, OpenAI returned an error " + response.statusText)
-    );
-  }
 }
 
 function getMaxTokens(text, deployment) {
@@ -188,15 +180,16 @@ function buildQuery(text, config) {
   }
 }
 
-function processOpenAIResponse(response, initText) {
+function processOpenAIResponse(response) {
   if (response.error) {
+    displayWarning = false;
     return response.error.message;
   }
 
   const choice = response.choices[0];
   if (choice.text) {
-    return initText + choice.text;
+    return choice.text;
   } else {
-    return initText + choice.message.content;
+    return choice.message.content;
   }
 }
