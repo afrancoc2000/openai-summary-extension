@@ -2,63 +2,61 @@
 <html>
   <head>
     <title>My Test Extension Options</title>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-amber.min.css" />
     <link rel="stylesheet" href="./options.css" />
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   </head>
   <body>
-    <table>
-      <tr>
-        <td>
-          <label for="apiKey"> OpenAI Api Key:</label>
-        </td>
-        <td>
-          <input type="text" id="apiKey" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="endpoint"> Azure OpenAI Endpoint:</label>
-        </td>
-        <td>
-          <input type="text" id="endpoint" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="deployment"> Azure OpenAI Deployment:</label>
-        </td>
-        <td>
-            <select id="deployment">
-                <option value="code-davinci-002">code-davinci-002</option>
-                <option value="text-davinci-003">text-davinci-003</option>
-                <option value="gpt-3.5-turbo-0301">gpt-3.5-turbo-0301</option>
-                <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
-                <option value="gpt-35-turbo-0301">gpt-35-turbo-0301</option>
-                <option value="gpt-4-0314">gpt-4-0314</option>
-                <option value="gpt-4-32k-0314">gpt-4-32k-0314</option>
-              </select>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="maxTokens"> Azure OpenAI max tokens:</label>
-        </td>
-        <td>
-          <input type="text" id="maxTokens" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="temperature"> Azure OpenAI temperature:</label>
-        </td>
-        <td>
-          <input type="text" id="temperature" />
-        </td>
-      </tr>
-    </table>
+    <div class="demo-card-wide mdl-card">
+      <form action="#">
+        <div class="mdl-textfield mdl-js-textfield">
+          <label class="input-label" for="apiKey">OpenAI Api Key</label>
+          <input class="mdl-textfield__input" type="text" id="apiKey" />
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+          <label class="input-label" for="endpoint">
+            Azure OpenAI Endpoint
+          </label>
+          <input class="mdl-textfield__input" type="text" id="endpoint" />
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+          <label class="input-label" for="endpoint">
+            Azure OpenAI Deployment
+          </label>
+          <select id="deployment" class="mdl-textfield__input">
+            <option value="code-davinci-002">code-davinci-002</option>
+            <option value="text-davinci-003">text-davinci-003</option>
+            <option value="gpt-3.5-turbo-0301">gpt-3.5-turbo-0301</option>
+            <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+            <option value="gpt-35-turbo-0301">gpt-35-turbo-0301</option>
+            <option value="gpt-4-0314">gpt-4-0314</option>
+            <option value="gpt-4-32k-0314">gpt-4-32k-0314</option>
+          </select>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+          <label class="input-label" for="maxTokens">
+            Azure OpenAI max tokens
+          </label>
+          <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="maxTokens" />
+          <span class="mdl-textfield__error">Input is not a valid number!</span>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+          <label class="input-label" for="temperature">
+            Azure OpenAI temperature
+          </label>
+          <input class="mdl-textfield__input" type="text" pattern="[0-1]*(\.[0-9]+)?" id="temperature"/>
+          <span class="mdl-textfield__error">Input is not a valid temperature!</span>
+        </div>
+      </form>
 
-    <div id="status"></div>
-    <button id="save">Save</button>
+      <div class="mdl-card__actions">
+        <button id="save" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+          Save
+        </button>
+        <span id="status"></span>
+      </div>
 
+    </div>
     <script src="options.js"></script>
   </body>
 </html>

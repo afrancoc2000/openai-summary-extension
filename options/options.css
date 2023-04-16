@@ -1,15 +1,14 @@
-body {
-  margin: 20px 15px;
+.demo-card-wide.mdl-card {
+  width: 100%;
+  padding: 16px;
 }
 
-button {
-    margin: 10px 0;
+.input-label {
+  font-size: small;
+  font-weight: bold;
+  color: teal;
 }
 
-table {
-    width: 100%;
-}
-
-input, select {
-    width: 92%;
+span#status {
+    margin-left: 10px;
 }
