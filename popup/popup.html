@@ -4,15 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-amber.min.css" />
     <link rel="stylesheet" href="./popup.css" />
   </head>
   <body>
-    <h1>Article summary</h1>
-    <button>Generate</button>
-    <p id="wordCount"></p>
-    <p id="readTime"></p>
-    <p id="summary"></p>
-
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Article summary</h2>
+      </div>
+      <div class="mdl-card__supporting-text small-letter">
+        <span id="wordCount"></span>
+        <span id="readTime"></span>
+      </div>
+      <div id="summary" class="mdl-card__supporting-text"></div>
+    </div>
     <script src="./popup.js" type="module"></script>
   </body>
 </html>

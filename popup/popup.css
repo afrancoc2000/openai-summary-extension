@@ -1,9 +1,13 @@
 body {
-  width: 20rem;
-  margin: 20px 10px;
+  margin: 0;
 }
 
-h3,
-p {
-  margin: 10px 0;
+.demo-card-wide.mdl-card {
+  width: 512px;
+}
+
+.mdl-card__supporting-text.small-letter {
+  font-size: x-small;
+  padding-top: 0;
+  padding-bottom: 0;
 }
