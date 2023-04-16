@@ -11,6 +11,7 @@ const chatQuery =
   "Provide a summary of the text below that captures its main idea.";
 const contextTokens = 50;
 const reservedTokens = 200;
+const tokensPerWord = 1.5;
 const maxTokensMap = {
   "code-davinci-002": 8001,
   "text-davinci-003": 4097,
@@ -92,7 +93,7 @@ function queryOpenAI(text, config, sendResponse) {
   if (maxTokens <= reservedTokens) {
     analysisText = getFirstXWords(
       text,
-      wordCount - Math.round((reservedTokens - maxTokens) / 1.5)
+      wordCount - Math.round((reservedTokens - maxTokens) / tokensPerWord)
     );
     displayWarning = true;
   }
@@ -113,7 +114,7 @@ function getMaxTokens(text, deployment) {
   const words = [...text.matchAll(wordMatchRegExp)];
   const wordCount = words.length;
   const maxTokens =
-    maxTokensMap[deployment] - contextTokens - Math.round(wordCount * 1.5);
+    maxTokensMap[deployment] - contextTokens - Math.round(wordCount * tokensPerWord);
   return maxTokens;
 }
 
