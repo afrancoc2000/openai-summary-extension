@@ -1,0 +1,33 @@
+html,
+body {
+  margin: 0;
+  min-height: 100px;
+  max-height: 600px;
+}
+
+.demo-card-wide.mdl-card {
+  width: 512px;
+  min-height: 100px;
+  max-height: 600px;
+}
+
+.mdl-card__supporting-text.small-letter {
+  font-size: x-small;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+hr {
+  margin: 6px 0;
+}
+
+.small-text {
+  margin-top: 6px;
+  font-size: x-small;
+}
+
+#warning {
+  font-style: italic;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
