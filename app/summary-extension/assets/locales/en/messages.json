@@ -1,0 +1,11 @@
+{
+    "appName": {
+        "message": "summary-extension"
+    },
+    "appShortName": {
+        "message": "summary-extension"
+    },
+    "appDescription": {
+        "message": "it creates a summary of the article in the website"
+    }
+}
