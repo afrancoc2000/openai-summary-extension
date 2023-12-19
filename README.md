@@ -54,3 +54,10 @@ usage. Please review OpenAI's pricing and usage policies to ensure you
 understand the associated costs before using the extension. The developers of
 this extension and the authors of this documentation are not responsible for any
 charges incurred as a result of your use of the OpenAI API with this extension.
+
+## References
+
+Some references used to build this extension:
+
+- https://github.com/Azure/azure-openai-samples
+- https://github.com/sozercan/kubectl-ai
