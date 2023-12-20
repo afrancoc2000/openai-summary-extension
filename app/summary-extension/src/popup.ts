@@ -177,35 +177,29 @@ import './popup.css';
     }
   }
 
-  // Add a timeout
-  setTimeout(() => {
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      chrome.tabs.sendMessage(tabs[0].id!, { type: 'ARTICLE' }, (response) => {
-        if (response && response.article) {
-          let words = [...response.article.matchAll(wordMatchRegExp)];
-          let wordCount = words.length;
-          article = response.article;
-          fillBasicInfo(wordCount);
-          actionsDiv.style.display = "block";
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id!, { type: 'ARTICLE' }, (response) => {
+      if (response && response.article) {
+        let words = [...response.article.matchAll(wordMatchRegExp)];
+        let wordCount = words.length;
+        article = response.article;
+        fillBasicInfo(wordCount);
+        actionsDiv.style.display = "block";
 
-          getConfig().then((options) => {
-            extOptions = options;
-            const maxTokens = getMaxTokens(article, options.deployment);
-            if (maxTokens <= reservedTokens) {
-              summaryMessage.textContent =
-                "This article would use more than the max tokens allowed, so, if you choose to generate the summary, only the first part of the article will be summarized.";
-            }
-          });
-        }
-        else {
-          wordCountMessage.textContent = "No article in this page";
-        }
-      });
+        getConfig().then((options) => {
+          extOptions = options;
+          const maxTokens = getMaxTokens(article, options.deployment);
+          if (maxTokens <= reservedTokens) {
+            summaryMessage.textContent =
+              "This article would use more than the max tokens allowed, so, if you choose to generate the summary, only the first part of the article will be summarized.";
+          }
+        });
+      }
+      else {
+        wordCountMessage.textContent = "No article in this page";
+      }
     });
-  }, 5000); // 5000 milliseconds = 5 seconds
-
-
-
+  });
 
   button.addEventListener("click", async () => {
     fillOpenAIInfo();
