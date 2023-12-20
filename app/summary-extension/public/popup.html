@@ -2,31 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>My Chrome Extension</title>
-    <link rel="stylesheet" href="popup.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-amber.min.css" />
+    <link rel="stylesheet" href="./popup.css" />
   </head>
   <body>
-    <div class="app">
-      <p class="counter-label">Counter</p>
-      <div id="counter" class="counter"></div>
-      <div class="button-container">
-        <button id="decrementBtn" class="button">-</button>
-        <button id="incrementBtn" class="button">+</button>
+    <div class="demo-card-wide mdl-card">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Article summary</h2>
       </div>
-
-      <hr class="divider" />
-
-      <p class="title">Chrome Extension is Ready!</p>
-      <p class="subtitle">Start by updating <code>popup.html</code></p>
+      <div class="mdl-card__supporting-text small-letter">
+        <span id="wordCount"></span>
+        <span id="readTime"></span>
+      </div>
+      <div class="mdl-card__supporting-text">
+        <div id="warning">This article would have used more than the max tokens allowed, so only the first part of the article was summarized.</div>
+        <div id="summary"></div>
+      </div>
+      <div class="mdl-card__actions">
+        <hr/>
+        <button id="save" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+          Generate summary
+        </button>
+        <div class="small-text">
+          Pressing this button is going to query OpenAI and can incur in some costs.
+        </div>
+      </div>
     </div>
-
     <script src="popup.js"></script>
-
-    <!--
-      This HTML file opens when you click on icon from the toolbar.
-
-      To begin the development, run `npm run watch`.
-      To create a production bundle, use `npm run build`.
-    -->
   </body>
 </html>

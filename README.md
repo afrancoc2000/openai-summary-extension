@@ -61,3 +61,6 @@ Some references used to build this extension:
 
 - https://github.com/Azure/azure-openai-samples
 - https://github.com/sozercan/kubectl-ai
+
+
+Icon taken from <a href="https://www.flaticon.com/free-icons/newspaper" title="newspaper icons">Newspaper icons created by Freepik - Flaticon</a>
