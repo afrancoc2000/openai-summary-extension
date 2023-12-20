@@ -6,7 +6,7 @@ const statusDiv = document.getElementById("status") as HTMLElement;
 
 const apiKeyInput = document.getElementById("apiKey") as HTMLInputElement;
 const endpointInput = document.getElementById("endpoint") as HTMLInputElement;
-const deploymentInput = document.getElementById("deployment") as HTMLSelectElement;
+const deploymentInput = document.getElementById("deployment") as HTMLInputElement;
 const maxTokensInput = document.getElementById("maxTokens") as HTMLInputElement;
 const temperatureInput = document.getElementById("temperature") as HTMLInputElement;
 
@@ -32,13 +32,7 @@ function restoreOptions(): Promise<void> {
                 endpointInput.value = result.endpoint;
                 maxTokensInput.value = result.maxTokens;
                 temperatureInput.value = result.temperature;
-
-                for (const option of deploymentInput.options) {
-                    if (option.value === result.deployment) {
-                        option.selected = true;
-                        break;
-                    }
-                }
+                deploymentInput.value = result.deployment;
                 resolve();
             }
         });
