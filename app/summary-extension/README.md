@@ -1,39 +1,21 @@
-# summary-extension
+# <img src="public/icons/icon_48.png" width="45" align="left"> Summary Extension
 
-it creates a summary of the article in the website
+My Chrome Extension
 
-## Development 
+## Features
 
-This extension was created with [Extension CLI](https://oss.mobilefirst.me/extension-cli/)!
+- Feature 1
+- Feature 2
 
-If you find this software helpful [star](https://github.com/MobileFirstLLC/extension-cli/) or [sponsor](https://github.com/sponsors/MobileFirstLLC) this project.
+## Install
 
+[**Chrome** extension]() <!-- TODO: Add chrome extension link inside parenthesis -->
 
-### Available Commands
+## Contribution
 
-| Commands | Description |
-| --- | --- |
-| `npm run start` | build extension, watch file changes |
-| `npm run build` | generate release version |
-| `npm run docs` | generate source code docs |
-| `npm run clean` | remove temporary files |
-| `npm run test` | run unit tests |
-| `npm run sync` | update config files |
+Suggestions and pull requests are welcomed!.
 
-For CLI instructions see [User Guide &rarr;](https://oss.mobilefirst.me/extension-cli/)
+---
 
-### Learn More
+This project was bootstrapped with [Chrome Extension CLI](https://github.com/dutiyesh/chrome-extension-cli)
 
-**Extension Developer guides**
-
-- [Getting started with extension development](https://developer.chrome.com/extensions/getstarted)
-- Manifest configuration: [version 2](https://developer.chrome.com/extensions/manifest) - [version 3](https://developer.chrome.com/docs/extensions/mv3/intro/)
-- [Permissions reference](https://developer.chrome.com/extensions/declare_permissions)
-- [Chrome API reference](https://developer.chrome.com/docs/extensions/reference/)
-
-**Extension Publishing Guides**
-
-- [Publishing for Chrome](https://developer.chrome.com/webstore/publish)
-- [Publishing for Edge](https://docs.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/publish-extension)
-- [Publishing for Opera addons](https://dev.opera.com/extensions/publishing-guidelines/)
-- [Publishing for Firefox](https://extensionworkshop.com/documentation/publish/submitting-an-add-on/)
