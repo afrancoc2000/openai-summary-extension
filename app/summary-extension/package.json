@@ -25,6 +25,7 @@
     "webpack-merge": "^5.10.0"
   },
   "dependencies": {
-    "chrome-types": "^0.1.246"
+    "chrome-types": "^0.1.246",
+    "langchain": "^0.0.210"
   }
 }

@@ -7,8 +7,10 @@ const statusDiv = document.getElementById("status") as HTMLElement;
 const apiKeyInput = document.getElementById("apiKey") as HTMLInputElement;
 const endpointInput = document.getElementById("endpoint") as HTMLInputElement;
 const deploymentInput = document.getElementById("deployment") as HTMLInputElement;
-const maxTokensInput = document.getElementById("maxTokens") as HTMLInputElement;
 const temperatureInput = document.getElementById("temperature") as HTMLInputElement;
+const apiVersionInput = document.getElementById("apiVersion") as HTMLInputElement;
+const chunkSizeInput = document.getElementById("chunkSize") as HTMLInputElement;
+const chunkOverlapInput = document.getElementById("chunkOverlap") as HTMLInputElement;
 
 const timeout = 3000;
 
@@ -17,8 +19,10 @@ interface ExtensionOptions {
     apiKey: string;
     endpoint: string;
     deployment: string;
-    maxTokens: number;
     temperature: number;
+    apiVersion: string;
+    chunkSize: number;
+    chunkOverlap: number;
 }
 
 // Get the saved options from storage
@@ -30,9 +34,11 @@ function restoreOptions(): Promise<void> {
             } else {
                 apiKeyInput.value = result.apiKey;
                 endpointInput.value = result.endpoint;
-                maxTokensInput.value = result.maxTokens;
-                temperatureInput.value = result.temperature;
                 deploymentInput.value = result.deployment;
+                temperatureInput.value = result.temperature;
+                apiVersionInput.value = result.apiVersion;
+                chunkSizeInput.value = result.chunkSize;
+                chunkOverlapInput.value = result.chunkOverlap;
                 resolve();
             }
         });
@@ -45,8 +51,10 @@ function saveOptions(): Promise<void> {
         apiKey: apiKeyInput.value,
         endpoint: endpointInput.value,
         deployment: deploymentInput.value,
-        maxTokens: Number(maxTokensInput.value),
         temperature: Number(temperatureInput.value),
+        apiVersion: apiVersionInput.value,
+        chunkSize: Number(chunkSizeInput.value),
+        chunkOverlap: Number(chunkOverlapInput.value),
     };
 
     if (
@@ -61,15 +69,21 @@ function saveOptions(): Promise<void> {
         return Promise.resolve();
     }
 
-    if (
-        isNaN(options.maxTokens) || options.maxTokens < 0) {
-        statusDiv.textContent = "The Max Tokens must be a number bigger than 0";
+    if (isNaN(options.chunkSize) || options.chunkSize < 0) {
+        statusDiv.textContent = "The chunk size must be a number bigger than 0";
         setTimeout(() => {
             statusDiv.textContent = "";
         }, timeout);
         return Promise.resolve();
     }
 
+    if (isNaN(options.chunkOverlap) || options.chunkOverlap < 0) {
+        statusDiv.textContent = "The chunk overlap must be a number bigger than 0";
+        setTimeout(() => {
+            statusDiv.textContent = "";
+        }, timeout);
+        return Promise.resolve();
+    }
 
     return new Promise((resolve, reject) => {
         chrome.storage.sync.set(options, () => {

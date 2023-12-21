@@ -25,18 +25,31 @@
           <input class="mdl-textfield__input" type="text" id="deployment" />
         </div>
         <div class="mdl-textfield mdl-js-textfield">
-          <label class="input-label" for="maxTokens">
-            Azure OpenAI max tokens
-          </label>
-          <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="maxTokens" />
-          <span class="mdl-textfield__error">Input is not a valid number!</span>
-        </div>
-        <div class="mdl-textfield mdl-js-textfield">
           <label class="input-label" for="temperature">
             Azure OpenAI temperature
           </label>
           <input class="mdl-textfield__input" type="text" pattern="[0-1]*(\.[0-9]+)?" id="temperature"/>
           <span class="mdl-textfield__error">Input is not a valid temperature!</span>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+          <label class="input-label" for="apiVersion">
+            Azure OpenAI API Version
+          </label>
+          <input class="mdl-textfield__input" type="text" id="apiVersion" />
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+          <label class="input-label" for="chunkSize">
+            Text split chunk size
+          </label>
+          <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="chunkSize" />
+          <span class="mdl-textfield__error">Input is not a valid number!</span>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+          <label class="input-label" for="chunkOverlap">
+            Text split chunk overlap
+          </label>
+          <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="chunkOverlap" />
+          <span class="mdl-textfield__error">Input is not a valid number!</span>
         </div>
       </form>
 
