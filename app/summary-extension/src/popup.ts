@@ -5,6 +5,7 @@ import './popup.css';
 import { ChatOpenAI } from 'langchain/chat_models/openai';
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { loadSummarizationChain } from "langchain/chains";
+import { PromptTemplate } from 'langchain/prompts';
 
 (function () {
 
@@ -76,9 +77,31 @@ import { loadSummarizationChain } from "langchain/chains";
 
     const splitter = new RecursiveCharacterTextSplitter({ chunkSize: config.chunkSize, chunkOverlap: config.chunkOverlap });
     const docs = await splitter.createDocuments([text]);
-    const chain = loadSummarizationChain(llm, { type: "map_reduce" });
-    const response = await chain.call({ input_documents: docs });
-    return response.text;
+
+    const promptTemplate = `Write a concise summary of the following:
+    {text}
+    CONCISE SUMMARY:`;
+    const prompt = PromptTemplate.fromTemplate(promptTemplate);
+
+    const refineTemplate = `Your job is to produce a final summary\n
+    We have provided an existing summary up to a certain point: {existing_answer}\n
+    We have the opportunity to refine the existing summary
+    (only if needed) with some more context below.\n
+    ------------\n
+    {text}\n
+    ------------\n
+    Given the new context, refine the original summary about 120 words
+    If the context isn't useful, return the original summary.`;
+    const refinePrompt = PromptTemplate.fromTemplate(refineTemplate);
+
+    const chain = loadSummarizationChain(llm, {
+      type: "refine",
+      questionPrompt: prompt,
+      refinePrompt: refinePrompt,
+    });
+
+    const response = await chain.run(docs);
+    return response;
   }
 
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
