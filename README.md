@@ -14,6 +14,8 @@ the word count, reading time, and generated summary in a popup.
   - Chrome:
     https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked
 
+> **Note:** Last version of this extension was created using the [chrome-extension-cli](https://github.com/dutiyesh/chrome-extension-cli#readme), so, you need to point Chrome or Edge to the `/app/summary-extension/build` folder instead.
+
 ## Usage
 
 - Navigate to a web page containing an article you want to summarize.
